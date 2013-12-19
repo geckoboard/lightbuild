@@ -1,0 +1,21 @@
+{
+  "name": "lightbuild",
+  "version": "0.0.1",
+  "description": "Jenkins CI integration for Philips Hue lightbulbs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geckoboard/lightbuild.git"
+  },
+  "author": "Leo Cassarani <leo@geckoboard.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/geckoboard/lightbuild/issues"
+  },
+  "dependencies": {
+    "request": "~2.29.0"
+  }
+}
