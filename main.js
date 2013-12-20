@@ -6,18 +6,22 @@ var Router = require('./lib/router'),
 console.log("Autodiscovering Hue router...");
 
 Router.autodiscover(function(router) {
+  var lightbulbId = env.LIGHTBULB_ID || 1;
+
   console.log("Found Hue router: " + router.inspect());
 
-  router.getLightbulb(env.LIGHTBULB_ID, function(lightbulb) {
-    setInterval(function() {
-      jenkins = new Jenkins({
-        username: env.JENKINS_USERNAME,
-        password: env.JENKINS_PASSWORD,
-        hostname: env.JENKINS_HOSTNAME
-      });
+  router.getLightbulb(lightbulbId, function(lightbulb) {
+    var jenkins = new Jenkins({
+      username: env.JENKINS_USERNAME,
+      password: env.JENKINS_PASSWORD,
+      hostname: env.JENKINS_HOSTNAME
+    });
 
+    setInterval(function() {
       tick(jenkins, lightbulb);
     }, refreshRate * 1000);
+
+    tick(jenkins, lightbulb);
   });
 });
 
