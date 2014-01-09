@@ -1,0 +1,7 @@
+{
+  "jenkins": {
+    "username": "jenkins",
+    "password": "password",
+    "hostname": "jenkins.example.com"
+  }
+}

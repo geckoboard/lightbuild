@@ -1,7 +1,13 @@
 var Router = require('./lib/router'),
     Jenkins = require('./lib/jenkins'),
+    config = require('./config/jenkins').jenkins,
     env = process.env,
-    refreshRate = 30;
+    refreshRate = 30,
+    buildServer = new Jenkins({
+      username: config.username,
+      password: config.password,
+      hostname: config.hostname
+    });
 
 console.log("Autodiscovering Hue router...");
 
@@ -11,16 +17,9 @@ Router.autodiscover(function(err, router) {
     process.exit(1);
   }
 
-  var lightbulbId = env.LIGHTBULB_ID || 1,
-      buildServer = new Jenkins({
-        username: env.JENKINS_USERNAME,
-        password: env.JENKINS_PASSWORD,
-        hostname: env.JENKINS_HOSTNAME
-      });
-
   console.log("Found Hue router: " + router.inspect());
 
-  router.getLightbulb(lightbulbId, function(lightbulb) {
+  router.getLightbulb(env.LIGHTBULB_ID || 1, function(lightbulb) {
     startTicking(buildServer, lightbulb);
   });
 });
