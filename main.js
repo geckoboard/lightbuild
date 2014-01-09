@@ -5,7 +5,12 @@ var Router = require('./lib/router'),
 
 console.log("Autodiscovering Hue router...");
 
-Router.autodiscover(function(router) {
+Router.autodiscover(function(err, router) {
+  if (err) {
+    console.log("Error: " + err.message);
+    process.exit(1);
+  }
+
   var lightbulbId = env.LIGHTBULB_ID || 1,
       buildServer = new Jenkins({
         username: env.JENKINS_USERNAME,
