@@ -19,10 +19,32 @@ Router.autodiscover(function(err, router) {
 
   console.log("Found Hue router: " + router.inspect());
 
-  router.getLightbulb(env.LIGHTBULB_ID || 1, function(lightbulb) {
-    startTicking(buildServer, lightbulb);
+  ensureAuthenticated(router, function() {
+    router.getLightbulb(env.LIGHTBULB_ID || 1, function(lightbulb) {
+      startTicking(buildServer, lightbulb);
+    });
   });
 });
+
+function ensureAuthenticated(router, callback) {
+  router.isAuthenticated(function(isAuthenticated) {
+    if (isAuthenticated) {
+      callback();
+    } else {
+      console.log("Requesting permissions to connect to your Hue router...");
+
+      router.authenticate(function(success) {
+        if (!success) {
+          console.log("\nError: Lightbuild must be granted permission to connect to your Hue Router");
+          console.log("Please press the link button on top of the router, then run lightbuild again within 30 seconds\n");
+          process.exit(1);
+        }
+
+        callback();
+      });
+    }
+  });
+}
 
 function startTicking(buildServer, lightbulb) {
   setInterval(function() {
