@@ -1,6 +1,6 @@
 var Bridge  = require('./lib/bridge'),
     Jenkins = require('./lib/jenkins'),
-    config  = require('./config/jenkins').jenkins,
+    config  = require('./config/ci').jenkins,
     env = process.env,
     refreshRate = 30,
     buildServer = new Jenkins({
