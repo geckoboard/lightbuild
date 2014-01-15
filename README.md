@@ -25,9 +25,9 @@ bridge and request the necessary permissions. You won't have to press
 the button again unless you reset the bridge.
 
 By default, lightbuild will use your lightbulb with the ID of 1. To use
-a different lightbulb, set the `LIGHTBULB_ID` environment variable:
+a different lightbulb, set the `LIGHT_ID` environment variable:
 
-    LIGHTBULB_ID=3 ./script/start
+    LIGHT_ID=3 ./script/start
 
 After connecting to the router, lightbuild will poll your Jenkins server
 every 30 seconds and set the lightbulb to be green if all your builds

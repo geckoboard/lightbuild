@@ -20,8 +20,8 @@ Bridge.autodiscover(function(err, bridge) {
   console.log("Found Hue bridge: " + bridge.inspect());
 
   ensureAuthenticated(bridge, function() {
-    bridge.getLightbulb(env.LIGHTBULB_ID || 1, function(lightbulb) {
-      startTicking(buildServer, lightbulb);
+    bridge.getLight(env.LIGHT_ID || 1, function(light) {
+      startTicking(buildServer, light);
     });
   });
 });
@@ -46,21 +46,21 @@ function ensureAuthenticated(bridge, callback) {
   });
 }
 
-function startTicking(buildServer, lightbulb) {
+function startTicking(buildServer, light) {
   setInterval(function() {
-    tick(buildServer, lightbulb);
+    tick(buildServer, light);
   }, refreshRate * 1000);
 
-  tick(buildServer, lightbulb);
+  tick(buildServer, light);
 }
 
-function tick(buildServer, lightbulb) {
+function tick(buildServer, light) {
   buildServer.getBuildStatus(function(status) {
     if (status.isBroken()) {
-      lightbulb.blinkRed();
+      light.blinkRed();
     }
     else {
-      lightbulb.showGreen();
+      light.showGreen();
     }
   });
 }
