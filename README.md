@@ -1,6 +1,8 @@
-# lightbuild
+# Lightbuild
 
-Integrates your Jenkins build status with Philips Hue lightbulbs.
+Lightbuild integrates your Jenkins build status with Philips Hue lightbulbs.
+
+![Lightbuild demo](https://s3.amazonaws.com/gecko.static/images/lightbuild.gif)
 
 ## Installation
 
