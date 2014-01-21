@@ -8,7 +8,7 @@ Lightbuild integrates your Jenkins build status with Philips Hue lightbulbs.
 
 After installing [node](http://nodejs.org), run:
 
-    npm install
+    npm install lightbuild
 
 ## Usage
 
