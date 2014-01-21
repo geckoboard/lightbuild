@@ -1,6 +1,6 @@
 {
   "name": "lightbuild",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Jenkins CI integration for Philips Hue lightbulbs",
   "main": "main.js",
   "scripts": {
